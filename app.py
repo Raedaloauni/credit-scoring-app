@@ -11,32 +11,28 @@ model = joblib.load('best_model_rf.pkl')
 scaler = joblib.load('scaler.pkl')
 
 # --- STYLE CSS PERSONNALISÉ ---
-st.markdown("""
-    <style>
+# --- STYLE CSS PERSONNALISÉ ---
+custom_css = """
+<style>
     .main { background-color: #f5f7f9; }
-    .stButton>button { width: 100%; border-radius: 20px; height: 3em; background-color: #007bff; color: white; font-weight: bold; }
-    .result-box { padding: 20px; border-radius: 15px; text-align: center; font-size: 24px; font-weight: bold; }
-    </style>
-    """, unsafe_allow_stdio=True)
-
-st.title("🏦 Intelligence Artificielle : Analyse de Crédit")
-st.markdown("---")
-
-# --- LAYOUT : 2 COLONNES ---
-col1, col2 = st.columns(2)
-
-with col1:
-    st.subheader("👤 Profil du Client")
-    age = st.slider("Âge du demandeur", 18, 95, 40)
-    deps = st.number_input("Nombre de personnes à charge", 0, 10, 0)
-    
-with col2:
-    st.subheader("💰 Situation Financière")
-    income = st.number_input("Revenu Mensuel ($)", min_value=0, value=5000)
-    util = st.slider("Utilisation du crédit", 0.0, 1.0, 0.3)
-    debt = st.number_input("Ratio d'endettement (Debt Ratio)", value=0.35)
-
-st.markdown("---")
+    .stButton>button { 
+        width: 100%; 
+        border-radius: 20px; 
+        height: 3em; 
+        background-color: #007bff; 
+        color: white; 
+        font-weight: bold; 
+    }
+    .result-box { 
+        padding: 20px; 
+        border-radius: 15px; 
+        text-align: center; 
+        font-size: 24px; 
+        font-weight: bold; 
+    }
+</style>
+"""
+st.markdown(custom_css, unsafe_allow_html=True)
 
 # --- LOGIQUE DE PRÉDICTION ---
 if st.button("🚀 LANCER L'ANALYSE DU RISQUE"):
