@@ -40,7 +40,7 @@ if submit_button:
     prob = model.predict_proba(data_scaled)[0][1]
     
     # Affichage
-    if prob < 0.5:
+    if prob < 0.3:
         st.success(f"✅ CRÉDIT ACCORDÉ (Risque : {prob:.2%})")
     else:
         st.error(f"❌ CRÉDIT REFUSÉ (Risque : {prob:.2%})")
